@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-psabi")
 
-project(7seg-display-ut)
+project(displays-ut)
 enable_testing()
 
 include(cmake/flags.cmake)

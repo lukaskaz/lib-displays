@@ -1,8 +1,9 @@
-#include <gmock/gmock.h>
+#include "test_common.hpp"
 
-int main(int argc, char **argv) {
-  testing::InitGoogleTest(&argc, argv);
-  auto ret = RUN_ALL_TESTS();
+#include "gtest/gtest.h"
 
-  return ret;
+int main(int argc, char** argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
