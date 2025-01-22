@@ -26,7 +26,7 @@ file(GLOB TEST_SOURCES "src/*.cpp")
 add_executable(${PROJECT_NAME} ${APP_SOURCES} ${TEST_SOURCES})
 
 add_dependencies(${PROJECT_NAME} googletest)
-target_link_libraries(${PROJECT_NAME} gtest gmock Boost::filesystem)
+target_link_libraries(${PROJECT_NAME} gtest gmock)
 
 add_test(
     NAME ${PROJECT_NAME}
