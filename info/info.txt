@@ -1,0 +1,5 @@
+##### INTERFACES #####
+1. 7 segment display (1 digit module) on M74HC595 shift
+register handled by SPI 3 DATA PINS (MOSI->SI, SCLK->SCK,
+CE0->RCK) + 2 PINS SHORTED GND->NG, VCC->NSCLR)
+
