@@ -2,7 +2,7 @@
 
 #include "display/factory.hpp"
 
-namespace display::sevsegbi
+namespace display::sevsegbi::m74hc595
 {
 
 enum class commontype
@@ -35,4 +35,4 @@ class Display : public DisplayIf<param_t>
     std::unique_ptr<Handler> handler;
 };
 
-} // namespace display::sevsegbi
+} // namespace display::sevsegbi::m74hc595

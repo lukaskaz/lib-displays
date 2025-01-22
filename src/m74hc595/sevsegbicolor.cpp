@@ -1,4 +1,4 @@
-#include "display/interfaces/sevsegbicolor.hpp"
+#include "display/interfaces/m74hc595/sevsegbicolor.hpp"
 
 #include "display/sevsegment/bicolor/charcodes.hpp"
 
@@ -7,7 +7,7 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-namespace display::sevsegbi
+namespace display::sevsegbi::m74hc595
 {
 
 struct Display::Handler
@@ -94,4 +94,4 @@ bool Display::show(const std::string& text, const param_t& color)
     return handler->show(text, color);
 }
 
-} // namespace display::sevsegbi
+} // namespace display::sevsegbi::m74hc595
