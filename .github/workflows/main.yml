@@ -32,9 +32,11 @@ jobs:
     - name: Preparing binary
       run: |
         mkdir build && cd build && cmake .. -DADD_EXAMPLES=ON && make
-    - name: Executing sevseg program
+    - name: Executing sevseg programs
       run: |
-        ./build/examples/sevseg/sevseg
+        ./build/examples/sevseg/m74hc595/single/onecolor/prog
+        ./build/examples/sevseg/m74hc595/single/bicolor/prog
+        ./build/examples/sevseg/m74hc595/multi/onecolor/prog
 
   test:
     name: Test
