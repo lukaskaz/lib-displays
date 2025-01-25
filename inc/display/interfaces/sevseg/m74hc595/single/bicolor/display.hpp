@@ -18,7 +18,7 @@ enum class colortype
 };
 
 using param_t = colortype;
-using config_t = std::tuple<commontype, param_t>;
+using config_t = std::tuple<commontype, colortype>;
 
 class Display : public DisplayIf<param_t>
 {

@@ -20,7 +20,7 @@ int main(int argc, char** argv)
         auto text = argv[1];
         auto iface =
             display::DisplayFactory::create<Display, config_t, param_t>(
-                dev, {commontype::anode});
+                dev, {commontype::anode, 10ms});
         iface->show(text, 3000ms);
     }
     return 0;

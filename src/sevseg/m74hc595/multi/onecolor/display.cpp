@@ -14,7 +14,8 @@ struct Display::Handler
 {
   public:
     Handler(const std::string& dev, const config_t& config) :
-        spifd{open(dev.c_str(), O_RDWR)}, type{std::get<commontype>(config)}
+        spifd{open(dev.c_str(), O_RDWR)}, type{std::get<commontype>(config)},
+        timems{std::get<std::chrono::milliseconds>(config)}
     {
         if (spifd < 0)
             throw std::runtime_error("Cannot open device: " + dev);
@@ -26,7 +27,7 @@ struct Display::Handler
 
     bool show(const std::string& text) const
     {
-        return show(text, 1000ms);
+        return show(text, timems);
     }
 
     bool show(const std::string& text, const param_t& timems) const
@@ -48,6 +49,7 @@ struct Display::Handler
   private:
     int32_t spifd;
     commontype type;
+    std::chrono::milliseconds timems;
     const uint8_t textsize{4};
     const uint32_t speedhz{500000};
 
@@ -91,7 +93,7 @@ struct Display::Handler
                 uint8_t code{};
                 getcode(digit, code);
                 showdigit(textsize - idx, code);
-                usleep(1 * 1000); // ultiplexing @ 1ms
+                usleep(1 * 1000); // multiplexing @ 1ms
             }
             return true;
         }
