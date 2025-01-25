@@ -1,4 +1,4 @@
-#include "display/interfaces/m74hc595/sevsegbicolor.hpp"
+#include "display/interfaces/sevseg/m74hc595/single/bicolor/display.hpp"
 
 #include <fcntl.h>
 #include <linux/spi/spidev.h>
@@ -13,14 +13,14 @@
 
 int main(int argc, char** argv)
 {
-
     if (argc > 1)
     {
-        using namespace display::sevsegbi::m74hc595;
+        using namespace display::sevseg::m74hc595::single::bicolor;
         auto dev{"/dev/spidev0.0"};
         auto text = argv[1];
-        auto iface = display::DisplayFactory::create<Display>(
-            dev, config_t{commontype::anode, colortype{}});
+        auto iface =
+            display::DisplayFactory::create<Display, config_t, param_t>(
+                dev, {commontype::anode, {}});
 
         iface->show(text);
         sleep(2);

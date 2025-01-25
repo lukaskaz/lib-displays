@@ -11,9 +11,9 @@ namespace display
 class DisplayFactory
 {
   public:
-    template <typename T, typename U, typename P>
+    template <typename T, typename C, typename P>
     static std::shared_ptr<DisplayIf<P>> create(const std::string& text,
-                                                const std::tuple<U, P>& config)
+                                                const C& config)
     {
         return std::shared_ptr<T>(new T(text, config));
     }

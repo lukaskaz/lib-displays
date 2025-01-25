@@ -1,5 +1,5 @@
 #!/bin/bash
-PROG=./7seg-display
+PROG=$1
 
 function _clear()
 {

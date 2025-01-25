@@ -2,7 +2,7 @@
 
 #include "display/factory.hpp"
 
-namespace display::sevsegbi::m74hc595
+namespace display::sevseg::m74hc595::single::onecolor
 {
 
 enum class commontype
@@ -13,12 +13,11 @@ enum class commontype
 
 enum class colortype
 {
-    first,
-    second
+    first
 };
 
 using param_t = colortype;
-using config_t = std::tuple<commontype, param_t>;
+using config_t = std::tuple<commontype>;
 
 class Display : public DisplayIf<param_t>
 {
@@ -35,4 +34,4 @@ class Display : public DisplayIf<param_t>
     std::unique_ptr<Handler> handler;
 };
 
-} // namespace display::sevsegbi::m74hc595
+} // namespace display::sevseg::m74hc595::single::onecolor

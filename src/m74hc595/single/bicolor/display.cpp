@@ -1,13 +1,13 @@
-#include "display/interfaces/m74hc595/sevsegbicolor.hpp"
+#include "display/interfaces/sevseg/m74hc595/single/bicolor/display.hpp"
 
-#include "display/sevsegment/bicolor/charcodes.hpp"
+#include "display/helpers/sevseg/charcodes.hpp"
 
 #include <fcntl.h>
 #include <linux/spi/spidev.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-namespace display::sevsegbi::m74hc595
+namespace display::sevseg::m74hc595::single::bicolor
 {
 
 struct Display::Handler
@@ -22,7 +22,7 @@ struct Display::Handler
     }
     ~Handler()
     {
-        show(" ", colortype{});
+        show(" ", {});
     }
 
     bool show(const std::string& text) const
@@ -48,14 +48,14 @@ struct Display::Handler
     commontype type;
     colortype color;
     const char colorswitch{'.'};
-    const uint32_t textsize{1};
+    const uint8_t textsize{1};
     const uint32_t speedhz{500000};
 
     bool getcode(const std::string& str, uint8_t& code) const
     {
-        if (bicolor::charmap.contains(str))
+        if (charmap.contains(str))
         {
-            code = bicolor::charmap.at(str);
+            code = charmap.at(str);
             return true;
         }
         return false;
@@ -94,4 +94,4 @@ bool Display::show(const std::string& text, const param_t& color)
     return handler->show(text, color);
 }
 
-} // namespace display::sevsegbi::m74hc595
+} // namespace display::sevseg::m74hc595::single::bicolor

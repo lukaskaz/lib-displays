@@ -1,6 +1,6 @@
-#include "display/sevsegment/bicolor/charcodes.hpp"
+#include "display/helpers/sevseg/charcodes.hpp"
 
-namespace display::bicolor
+namespace display::sevseg
 {
 
 const std::unordered_map<std::string, uint8_t> charmap = {
@@ -119,4 +119,4 @@ const std::array<uint8_t, 96> chararray = {
     0b00000000, /* (del) */
 };
 
-} // namespace display::bicolor
+} // namespace display::sevseg
