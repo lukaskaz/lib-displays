@@ -53,6 +53,7 @@ struct Display::Handler
 
     bool getcode(const std::string& str, uint8_t& code) const
     {
+        using namespace display::sevseg::charmaps::bicolor;
         if (charmap.contains(str))
         {
             code = charmap.at(str);

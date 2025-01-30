@@ -50,10 +50,11 @@ struct Display::Handler
 
     bool getcode(const char ch, uint8_t& code) const
     {
-        uint32_t pos = ch - ' ';
-        if (pos < chararray.size())
+        using namespace display::sevseg::charmaps::onecolor;
+        auto str = std::string{ch};
+        if (charmap.contains(str))
         {
-            code = chararray.at(pos);
+            code = charmap.at(str);
             return true;
         }
         return false;
