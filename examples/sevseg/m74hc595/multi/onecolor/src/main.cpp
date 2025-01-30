@@ -17,11 +17,16 @@ int main(int argc, char** argv)
     {
         using namespace display::sevseg::m74hc595::multi::onecolor;
         auto dev{"/dev/spidev0.0"};
-        auto text = argv[1];
+        auto delay = 10s;
         auto iface =
             display::DisplayFactory::create<Display, config_t, param_t>(
-                dev, {commontype::anode, 10ms});
-        iface->show(text, 3000ms);
+                dev, {commontype::anode, 1ms});
+        for (uint8_t idx{1}; idx < argc; idx++)
+        {
+            // iface->show(argv[idx], 500ms);
+            iface->show(argv[idx]);
+            sleep((uint32_t)delay.count());
+        }
     }
     return 0;
 }
