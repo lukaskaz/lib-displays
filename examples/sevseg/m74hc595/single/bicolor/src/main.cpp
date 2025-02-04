@@ -18,9 +18,8 @@ int main(int argc, char** argv)
         using namespace display::sevseg::m74hc595::single::bicolor;
         auto dev{"/dev/spidev0.0"};
         auto text = argv[1];
-        auto iface =
-            display::DisplayFactory::create<Display, config_t, param_t>(
-                dev, {commontype::anode, {}});
+        auto iface = display::Factory::create<Display, config_t, param_t>(
+            dev, {commontype::anode, {}});
 
         iface->show(text);
         sleep(2);

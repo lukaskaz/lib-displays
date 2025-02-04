@@ -28,7 +28,7 @@ class Display : public DisplayIf<param_t>
     bool show(const std::string&, const param_t&) override;
 
   private:
-    friend class display::DisplayFactory;
+    friend class display::Factory;
     Display(const std::string&, const config_t&);
 
     struct Handler;
