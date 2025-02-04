@@ -8,7 +8,7 @@
 namespace display
 {
 
-class DisplayFactory
+class Factory
 {
   public:
     template <typename T, typename C, typename P>
