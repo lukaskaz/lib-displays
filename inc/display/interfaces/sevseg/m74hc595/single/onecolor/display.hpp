@@ -1,6 +1,7 @@
 #pragma once
 
 #include "display/factory.hpp"
+#include "logs/interfaces/logs.hpp"
 
 namespace display::sevseg::m74hc595::single::onecolor
 {
@@ -17,7 +18,7 @@ enum class colortype
 };
 
 using param_t = colortype;
-using config_t = std::tuple<commontype>;
+using config_t = std::tuple<commontype, std::shared_ptr<logs::LogIf>>;
 
 class Display : public DisplayIf<param_t>
 {
