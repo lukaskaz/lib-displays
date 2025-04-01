@@ -17,7 +17,7 @@ enum class commontype
 };
 
 using param_t = std::chrono::milliseconds;
-using config_t = std::tuple<commontype, std::chrono::milliseconds,
+using config_t = std::tuple<commontype, std::chrono::microseconds,
                             std::shared_ptr<logs::LogIf>>;
 
 class Display : public DisplayIf<param_t>

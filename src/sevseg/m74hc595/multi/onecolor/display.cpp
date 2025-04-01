@@ -25,14 +25,14 @@ struct Display::Handler
     Handler(const std::string& dev, const config_t& config) :
         logif{std::get<std::shared_ptr<logs::LogIf>>(config)},
         spifd{open(dev.c_str(), O_RDWR)}, type{std::get<commontype>(config)},
-        digitmplextime{std::get<std::chrono::milliseconds>(config)}
+        digitmplextime{std::get<std::chrono::microseconds>(config)}
     {
         if (spifd < 0)
             throw std::runtime_error("Cannot open device: " + dev);
         start();
         log(logs::level::info,
             "Created onecolor multi 7segm display w/ shifting "
-            "[dev/typ/col/mxtime/shtime/speedhz]: " +
+            "[dev/typ/mxtimeus/shtimems/speedhz]: " +
                 dev + "/" + str((int32_t)type) + "/" +
                 str(digitmplextime.count()) + "/" +
                 str(digitshifttime.count()) + "/" + str(dispsize) + "/" +

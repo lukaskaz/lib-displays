@@ -12,13 +12,13 @@ int main(int argc, char** argv)
 {
     try
     {
-        if (argc > 1)
+        if (argc > 2)
         {
             std::chrono::microseconds delayus{100ms};
             auto dev{"/dev/spidev0.0"};
-            auto text = argv[1];
             auto loglvl =
-                (bool)atoi(argv[2]) ? logs::level::debug : logs::level::info;
+                (bool)atoi(argv[1]) ? logs::level::debug : logs::level::info;
+            auto text = argv[2];
 
             auto logconsole = logs::Factory::create<logs::console::Log,
                                                     logs::console::config_t>(
@@ -34,14 +34,14 @@ int main(int argc, char** argv)
             auto iface = display::Factory::create<Display, config_t, param_t>(
                 dev, {commontype::anode, {}, logif});
 
-            if (argc == 2)
+            if (argc == 3)
             {
                 iface->show(text);
                 usleep((uint32_t)delayus.count());
             }
-            else if (argc > 2)
+            else if (argc == 4)
             {
-                iface->show(text, *argv[2] == '1' ? colortype::first
+                iface->show(text, *argv[3] == '1' ? colortype::first
                                                   : colortype::second);
                 usleep((uint32_t)delayus.count());
             }

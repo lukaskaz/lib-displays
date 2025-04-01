@@ -48,7 +48,8 @@ struct Display::Handler
     bool show(const std::string& text, const param_t& color) const
     {
         log(logs::level::debug,
-            "Requested text to display: '" + text + "'/" + str(text.size()));
+            "Requested text to display(col:" + str((int32_t)color) + "): '" +
+                text + "'/" + str(text.size()));
         if (text.size() == textsize)
         {
             auto digit = color == colortype::first ? text : text + colorswitch;

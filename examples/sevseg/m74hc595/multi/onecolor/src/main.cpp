@@ -12,10 +12,10 @@ int main(int argc, char** argv)
 {
     try
     {
-        if (argc > 1)
+        if (argc > 2)
         {
             auto dev{"/dev/spidev0.0"};
-            std::chrono::microseconds delayus{10s};
+            std::chrono::microseconds delayus{5s};
             auto loglvl =
                 (bool)atoi(argv[1]) ? logs::level::debug : logs::level::info;
 
@@ -32,10 +32,13 @@ int main(int argc, char** argv)
             using namespace display::sevseg::m74hc595::multi::onecolor;
             auto iface = display::Factory::create<Display, config_t, param_t>(
                 dev, {commontype::anode, 1ms, logif});
-            for (uint8_t idx{2}; idx < argc; idx++)
+
+            iface->show(argv[2]);
+            usleep((uint32_t)delayus.count());
+
+            if (argc > 3)
             {
-                // iface->show(argv[idx], 500ms);
-                iface->show(argv[idx]);
+                iface->show(argv[3], 200ms);
                 usleep((uint32_t)delayus.count());
             }
         }
