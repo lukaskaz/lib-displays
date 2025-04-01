@@ -1,0 +1,18 @@
+Logging started at Tue Apr  1 20:02:40 2025
+[20250401_200240.409692][INFO][display::sevseg::m74hc595::multi::onecolor::Display::Handler::Handler(const std::string&, const display::sevseg::m74hc595::multi::onecolor::config_t&)] Created onecolor multi 7segm display w/ shifting [dev/typ/mxtimeus/shtimems/speedhz]: /dev/spidev0.0/1/1000/500/4/500000
+[20250401_200240.409812][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::show(const std::string&, const display::sevseg::m74hc595::multi::onecolor::param_t&)] Requested text to display: '1234'/4
+[20250401_200240.410043][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::showdigit(uint8_t, uint8_t) const] Code sent to display(ok): 00000000 -> 11111111
+[20250401_200240.410277][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::showdigit(uint8_t, uint8_t) const] Code sent to display(ok): 00000000 -> 11111111
+[20250401_200240.410459][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::showdigit(uint8_t, uint8_t) const] Code sent to display(ok): 00000000 -> 11111111
+[20250401_200240.410675][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::showdigit(uint8_t, uint8_t) const] Code sent to display(ok): 00000000 -> 11111111
+[20250401_200240.410730][INFO][display::sevseg::m74hc595::multi::onecolor::Display::Handler::start()::<lambda(std::stop_token)>] Display multiplexing started
+[20250401_200240.410881][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::showdigit(uint8_t, uint8_t) const] Code sent to display(ok): 00000110 -> 11111001
+[20250401_200240.412102][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::showdigit(uint8_t, uint8_t) const] Code sent to display(ok): 01011011 -> 10100100
+[20250401_200240.413380][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::showdigit(uint8_t, uint8_t) const] Code sent to display(ok): 01001111 -> 10110000
+[20250401_200240.414646][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::showdigit(uint8_t, uint8_t) const] Code sent to display(ok): 01100110 -> 10011001
+[20250401_200240.420038][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::showdigit(uint8_t, uint8_t) const] Code sent to display(ok): 00000000 -> 11111111
+[20250401_200240.420205][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::showdigit(uint8_t, uint8_t) const] Code sent to display(ok): 00000000 -> 11111111
+[20250401_200240.420342][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::showdigit(uint8_t, uint8_t) const] Code sent to display(ok): 00000000 -> 11111111
+[20250401_200240.420479][DBG ][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::showdigit(uint8_t, uint8_t) const] Code sent to display(ok): 00000000 -> 11111111
+[20250401_200240.420527][INFO][bool display::sevseg::m74hc595::multi::onecolor::Display::Handler::stop()] Display multiplexing stopped
+[20250401_200240.420569][INFO][display::sevseg::m74hc595::multi::onecolor::Display::Handler::~Handler()] Released onecolor multi 7segm display

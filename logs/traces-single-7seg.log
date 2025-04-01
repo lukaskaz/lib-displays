@@ -1,0 +1,17 @@
+Logging started at Tue Apr  1 20:06:13 2025
+[20250401_200613.572658][INFO][display::sevseg::m74hc595::single::bicolor::Display::Handler::Handler(const std::string&, const display::sevseg::m74hc595::single::bicolor::config_t&)] Created bicolor single 7segm display [dev/typ/col/size/speedhz]: /dev/spidev0.0/1/0/1/500000
+[20250401_200613.572764][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::show(const std::string&, const display::sevseg::m74hc595::single::bicolor::param_t&) const] Requested text to display(col:0): 'b'/1
+[20250401_200613.572898][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::showdigit(uint8_t) const] Code sent to display(ok): 00000010 -> 11111101
+[20250401_200613.572942][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::show(const std::string&, const display::sevseg::m74hc595::single::bicolor::param_t&) const] Requested text to display(col:1): 'b'/1<
+[20250401_200613.573048][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::showdigit(uint8_t) const] Code sent to display(ok): 10000010 -> 01111101
+[20250401_200613.573087][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::show(const std::string&, const display::sevseg::m74hc595::single::bicolor::param_t&) const] Requested text to display(col:0): '5'/1
+[20250401_200613.573191][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::showdigit(uint8_t) const] Code sent to display(ok): 01101101 -> 10010010
+[20250401_200613.573231][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::show(const std::string&, const display::sevseg::m74hc595::single::bicolor::param_t&) const] Requested text to display(col:1): '5'/1
+[20250401_200613.573407][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::showdigit(uint8_t) const] Code sent to display(ok): 11101101 -> 00010010
+[20250401_200613.573457][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::show(const std::string&, const display::sevseg::m74hc595::single::bicolor::param_t&) const] Requested text to display(col:0): '8'/1
+[20250401_200613.573590][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::showdigit(uint8_t) const] Code sent to display(ok): 01111111 -> 10000000
+[20250401_200613.573638][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::show(const std::string&, const display::sevseg::m74hc595::single::bicolor::param_t&) const] Requested text to display(col:1): '8'/1
+[20250401_200613.573740][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::showdigit(uint8_t) const] Code sent to display(ok): 11111111 -> 00000000
+[20250401_200613.573780][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::show(const std::string&, const display::sevseg::m74hc595::single::bicolor::param_t&) const] Requested text to display(col:0): ' '/1
+[20250401_200613.573877][DBG ][bool display::sevseg::m74hc595::single::bicolor::Display::Handler::showdigit(uint8_t) const] Code sent to display(ok): 00000000 -> 11111111
+[20250401_200613.573919][INFO][display::sevseg::m74hc595::single::bicolor::Display::Handler::~Handler()] Released bicolor single 7segm display

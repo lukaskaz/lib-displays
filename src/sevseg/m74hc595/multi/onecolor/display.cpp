@@ -1,5 +1,6 @@
 #include "display/interfaces/sevseg/m74hc595/multi/onecolor/display.hpp"
 
+#include "display/helpers/helpers.hpp"
 #include "display/helpers/sevseg/charcodes.hpp"
 
 #include <fcntl.h>
@@ -7,28 +8,42 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
+#include <bitset>
 #include <functional>
 #include <future>
 #include <mutex>
+#include <source_location>
 
 namespace display::sevseg::m74hc595::multi::onecolor
 {
+
+using namespace display::helpers;
 
 struct Display::Handler
 {
   public:
     Handler(const std::string& dev, const config_t& config) :
+        logif{std::get<std::shared_ptr<logs::LogIf>>(config)},
         spifd{open(dev.c_str(), O_RDWR)}, type{std::get<commontype>(config)},
-        digitmplextime{std::get<std::chrono::milliseconds>(config)}
+        digitmplextime{std::get<std::chrono::microseconds>(config)}
     {
         if (spifd < 0)
             throw std::runtime_error("Cannot open device: " + dev);
         start();
+        log(logs::level::info,
+            "Created onecolor multi 7segm display w/ shifting "
+            "[dev/typ/mxtimeus/shtimems/speedhz]: " +
+                dev + "/" + str((int32_t)type) + "/" +
+                str(digitmplextime.count()) + "/" +
+                str(digitshifttime.count()) + "/" + str(dispsize) + "/" +
+                str(speedhz));
     }
 
     ~Handler()
     {
         stop();
+        close(spifd);
+        log(logs::level::info, "Released onecolor multi 7segm display");
     }
 
     bool start()
@@ -38,20 +53,18 @@ struct Display::Handler
             std::bind(
                 [this](std::stop_token running) {
                     clear();
+                    log(logs::level::info, "Display multiplexing started");
                     while (!running.stop_requested())
                     {
                         if (auto text = gettextfordisplay(); !text.empty())
                         {
                             if (!showtext(text))
-                            {
                                 throw std::runtime_error(
-                                    "Cannot display text: " + inputtext);
-                            }
+                                    "Cannot display text: '" + inputtext +
+                                    "'/" + str(inputtext.size()));
                         }
                         else
-                        {
                             usleep(10 * 1000);
-                        }
                     }
                 },
                 running.get_token()));
@@ -63,6 +76,7 @@ struct Display::Handler
         auto ret = running.request_stop();
         async.wait();
         clear();
+        log(logs::level::info, "Display multiplexing stopped");
         return ret;
     }
 
@@ -73,6 +87,8 @@ struct Display::Handler
 
     bool show(const std::string& text, const param_t& timems)
     {
+        log(logs::level::debug,
+            "Requested text to display: '" + text + "'/" + str(text.size()));
         std::lock_guard lock(mtx);
         shiftpos = 0;
         shiftdir = dirtype::left;
@@ -82,9 +98,10 @@ struct Display::Handler
     }
 
   private:
+    const std::shared_ptr<logs::LogIf> logif;
     int32_t spifd;
     commontype type;
-    std::chrono::milliseconds digitmplextime{1ms};
+    std::chrono::microseconds digitmplextime{1ms};
     std::chrono::milliseconds digitshifttime{500ms};
     const uint8_t dispsize{4};
     const uint32_t speedhz{500000};
@@ -137,21 +154,28 @@ struct Display::Handler
 
     bool showdigit(uint8_t segnum, uint8_t code) const
     {
-        if (type == commontype::anode)
-            code = ~code;
+        uint8_t tosendcode = (type == commontype::cathode) ? code : ~code;
         segnum = segnum > 0 ? 1 << (segnum - 1) : 1;
 
-        auto tosend = std::to_array<uint8_t>({code, segnum}),
-             torecv = std::to_array<uint8_t>({0x00, 0x00});
+        auto tosenddata = std::to_array<uint8_t>({tosendcode, segnum}),
+             torecvdata = std::to_array<uint8_t>({0x00, 0x00});
         struct spi_ioc_transfer spiinfo = {
-            .tx_buf = (uint64_t)&tosend[0],
-            .rx_buf = (uint64_t)&torecv[0],
-            .len = tosend.size(),
+            .tx_buf = (uint64_t)&tosenddata[0],
+            .rx_buf = (uint64_t)&torecvdata[0],
+            .len = tosenddata.size(),
             .speed_hz = speedhz,
             .delay_usecs = 0,
             .bits_per_word = 8,
         };
-        return 0 == ioctl(spifd, SPI_IOC_MESSAGE(1), &spiinfo);
+
+        auto ret = 0 == ioctl(spifd, SPI_IOC_MESSAGE(1), &spiinfo);
+        log(logs::level::debug,
+            "Code sent to display(" + std::string(ret == 0 ? "ok" : "err") +
+                "): " + std::bitset<8 * sizeof(uint8_t)>(code).to_string() +
+                " -> " +
+                std::bitset<8 * sizeof(uint8_t)>(tosendcode).to_string());
+
+        return ret;
     }
 
     bool showtext(const std::string& text) const
@@ -167,8 +191,8 @@ struct Display::Handler
                 getcode(digit, code);
                 auto segnum = dispsize < text.size() ? dispsize : text.size();
                 showdigit((uint8_t)segnum - idx, code);
-                usleep((uint32_t)digitmplextime.count() *
-                       1000); // multiplexing @ digitmplextime[ms]
+                // multiplexing @ digitmplextime[us]
+                usleep((uint32_t)digitmplextime.count());
             }
             runningtime = std::chrono::duration_cast<std::chrono::milliseconds>(
                 std::chrono::steady_clock::now() - start);
@@ -185,6 +209,14 @@ struct Display::Handler
             return true;
         }
         return false;
+    }
+
+    void log(
+        logs::level level, const std::string& msg,
+        const std::source_location loc = std::source_location::current()) const
+    {
+        if (logif)
+            logif->log(level, std::string{loc.function_name()}, msg);
     }
 };
 

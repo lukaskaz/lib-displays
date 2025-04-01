@@ -34,9 +34,9 @@ jobs:
         mkdir build && cd build && cmake .. -DADD_EXAMPLES=ON && make
     - name: Executing sevseg programs
       run: |
-        ./build/examples/sevseg/m74hc595/single/onecolor/prog
-        ./build/examples/sevseg/m74hc595/single/bicolor/prog
-        ./build/examples/sevseg/m74hc595/multi/onecolor/prog
+        ./build/examples/sevseg/m74hc595/single/onecolor/soneprog
+        ./build/examples/sevseg/m74hc595/single/bicolor/sbiprog
+        ./build/examples/sevseg/m74hc595/multi/onecolor/moneprog
 
   test:
     name: Test
