@@ -27,6 +27,7 @@ pi@raspberrypi:\~/git/lib-displays/build $ ./examples/sevseg/m74hc595/single/bic
 ![Ex. of controlling single 7seg bicolor display, first stage view](pictures/sevseg/m74hc595/single/single_7seg_bicolor_begin.png "Displaying four characters in two colors, first stage of spi transfers view")<br><br>
 ![Ex. of controlling single 7seg bicolor display, middle stage view](pictures/sevseg/m74hc595/single/single_7seg_bicolor_middle.png "Displaying four characters in two colors, middle stage of spi transfers view")<br><br>
 ![Ex. of controlling single 7seg bicolor display, last stage view](pictures/sevseg/m74hc595/single/single_7seg_bicolor_end.png "Displaying four characters in two colors, last stage of spi transfers view")<br><br>
+![Ex. of controlling single 7seg bicolor display, diagnosctics view](pictures/sevseg/m74hc595/single/single_7seg_bicolor_diagnostics.gif "Displaying characters in two color, diagnostics with pcb probes")<br>
 <br>
 pi@raspberrypi:\~/git/lib-displays/build $ ./examples/sevseg/m74hc595/multi/onecolor/moneprog 0 "1234"<br>
 [INFO] Created onecolor multi 7segm display w/ shifting [dev/typ/mxtimeus/shtimems/speedhz]: /dev/spidev0.0/1/1000/500/4/500000<br>
@@ -55,4 +56,5 @@ pi@raspberrypi:\~/git/lib-displays/build $ ./examples/sevseg/m74hc595/multi/onec
 ![Ex. of controlling multi 7seg onecolor display, whole view + freq](pictures/sevseg/m74hc595/multi/multi_7seg_onecolor_whole_freq.png "Displaying multiplexed text in onecolor, complete spi transfers view w/ transfer freqency")<br><br>
 ![Ex. of controlling multi 7seg onecolor display, whole view + mxtime](pictures/sevseg/m74hc595/multi/multi_7seg_onecolor_whole_mxtime.png "Displaying multiplexed text in onecolor, complete spi transfers view w/ multiplexing time")<br><br>
 ![Ex. of controlling multi 7seg onecolor display, setting third segment](pictures/sevseg/m74hc595/multi/multi_7seg_onecolor_setting_third_segment.png "Displaying multiplexed text in onecolor, setting third segment stage of spi transfers view")<br><br>
-![Ex. of controlling multi 7seg onecolor display, clearing whole display](pictures/sevseg/m74hc595/multi/multi_7seg_onecolor_clearing_display.png "Displaying multiplexed text in onecolor, clearing all segments stage of spi transfers view")<br>
+![Ex. of controlling multi 7seg onecolor display, clearing whole display](pictures/sevseg/m74hc595/multi/multi_7seg_onecolor_clearing_display.png "Displaying multiplexed text in onecolor, clearing all segments stage of spi transfers view")<br><br>
+![Ex. of controlling multi 7seg onecolor display, diagnosctics view](pictures/sevseg/m74hc595/multi/multi_7seg_onecolor_diagnostics.gif "Displaying characters in red color, diagnostics with spi cables probes")<br>
