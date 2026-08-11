@@ -23,4 +23,11 @@ extern const std::unordered_map<std::string, uint8_t> charmap;
 
 } // namespace bicolor
 
+namespace multi::bicolor
+{
+
+extern const std::unordered_map<std::string, uint8_t> charmap;
+
+} // namespace multi::bicolor
+
 } // namespace display::sevseg::charmaps

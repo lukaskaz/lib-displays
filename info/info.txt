@@ -3,3 +3,8 @@
 register handled by SPI 3 DATA PINS (MOSI->SI, SCLK->SCK,
 CE0->RCK) + 2 PINS SHORTED GND->NG, VCC->NSCLR)
 
+
+$ while true; do ./examples/sevseg/m74hc595/multi/bicolor/mbiprog 0 "99.3" "07.8" 0 ;  ./examples/sevseg/m74hc595/multi/bicolor/mbiprog 0 "99.3" "07.8" 1;  done
+
+$ while true; do ./examples/sevseg/m74hc595/multi/bicolor/mbiprog 0 "12345.6" "65432.1" 0;  ./examples/sevseg/m74hc595/multi/bicolor/mbiprog 0 "12345.6" "65432.1" 1 ; done
+
